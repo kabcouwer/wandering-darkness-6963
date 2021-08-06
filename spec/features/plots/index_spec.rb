@@ -66,4 +66,24 @@ RSpec.describe 'plots index page' do
       expect(page).to have_link('Remove')
     end
   end
+
+  it 'has a working link that removes the plant from the plot' do
+    visit '/plots'
+
+    within "#plant-#{@plant_1.id}" do
+      click_link('Remove')
+    end
+
+    expect(current_path).to eq('/plots')
+
+    within "#plot-#{@plot_1.id}" do
+      expect(page).to have_content(@plot_1.number)
+      expect(page).to have_no_content(@plant_1.name)
+      expect(page).to have_content(@plant_2.name)
+    end
+
+    # it does not delete the plant record completely
+    expect(@plot_1.plants.length).to eq(1)
+    expect(Plant.all.length).to eq(4)
+  end
 end
