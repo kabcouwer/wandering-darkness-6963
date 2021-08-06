@@ -1,0 +1,6 @@
+<h1><%= @garden.name %></h1>
+
+<h3>Plants with low harvest days</h3>
+<% @garden.low_days_to_harvest_plants.each do |plant| %>
+<%= plant.name %>
+<% end %>
