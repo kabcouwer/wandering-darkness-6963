@@ -1,4 +1,4 @@
-class PlantsController < ApplicationController
+class DesignController < ApplicationController
   def destroy
     design = Design.find(params[:plot_id], params[:id])
     design.delete
