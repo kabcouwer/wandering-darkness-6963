@@ -1,9 +1,3 @@
-# User Story 1, Plots Index Page
-# As a visitor
-# When I visit the plots index page ('/plots')
-# I see a list of all plot numbers
-# And under each plot number I see names of all that plot's plants
-
 require 'rails_helper'
 
 RSpec.describe 'plots index page' do
@@ -25,8 +19,13 @@ RSpec.describe 'plots index page' do
   end
 
   it 'displays all plot numbers and plants associated to each' do
+    # User Story 1, Plots Index Page
+    # As a visitor
+    # When I visit the plots index page ('/plots')
+    # I see a list of all plot numbers
+    # And under each plot number I see names of all that plot's plants
     visit '/plots'
-save_and_open_page
+
     within "#plot-#{@plot_1.id}" do
       expect(page).to have_content(@plot_1.number)
       expect(page).to have_content(@plant_1.name)
@@ -40,6 +39,31 @@ save_and_open_page
 
     within "#plot-#{@plot_3.id}" do
       expect(page).to have_content(@plot_3.number)
+    end
+  end
+
+  it 'has a link to remove a plant from that plot' do
+    # User Story 2, Remove a Plant from a Plot
+    # As a visitor
+    # When I visit a plot's index page
+    # Next to each plant's name
+    # I see a link to remove that plant from that plot
+    # When I click on that link
+    # I'm returned to the plots index page
+    # And I no longer see that plant listed under that plot
+    # (Note: you should not destroy the plant record entirely)
+    visit '/plots'
+
+    within "#plant-#{@plant_1.id}" do
+      expect(page).to have_link('Remove')
+    end
+
+    within "#plant-#{@plant_2.id}" do
+      expect(page).to have_link('Remove')
+    end
+
+    within "#plant-#{@plant_3.id}" do
+      expect(page).to have_link('Remove')
     end
   end
 end

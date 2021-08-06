@@ -5,7 +5,10 @@
 <div id="plot-<%=plot.id%>">
   <h3>Plot Number:<%= plot.number %></h3>
   <% plot.plants.each do |plant| %>
+  <div id="plant-<%=plant.id%>">
     <p><%= plant.name %></p>
+    <%= link_to 'Remove', design_path(plot, plant) %>
+  </div>
   <% end %>
 </div>
 <% end %>
