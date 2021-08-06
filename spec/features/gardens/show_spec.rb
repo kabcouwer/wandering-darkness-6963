@@ -38,5 +38,4 @@ RSpec.describe 'garden show page' do
     expect(page).to have_no_content(@plant_2.name)
     expect(page).to have_no_content(@plant_4.name)
   end
-
 end
